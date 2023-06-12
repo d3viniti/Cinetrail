@@ -5,7 +5,7 @@ import axios from 'axios'
 function Slider({apiKey, baseUrl}) {
     const [upcomingMovies, setUpcomingMovies] = useState([])
     const [index, setIndex] = useState(0)
-    const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE
+    const imageBaseUrl = "https://image.tmdb.org/t/p/original" 
 
     useEffect (() => {
         axios.get(`${baseUrl}/movie/upcoming?api_key=${apiKey}`)
