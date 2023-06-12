@@ -1,0 +1,6 @@
+.homepage-container{
+    margin-top:var(--header-height);
+    color:var(--white);
+    min-height:100vh; 
+    padding-bottom:20px;
+}

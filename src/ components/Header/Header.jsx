@@ -41,7 +41,7 @@ function Header() {
             </div> 
 
             <div>
-                <button className='create-account'>Create Account</button>
+                <button className='create-account-btn'>Create Account</button>
             </div>
         </div>
     </div>
