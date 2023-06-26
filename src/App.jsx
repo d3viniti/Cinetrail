@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './ components/Header/Header'
 import ThemeContextProvider from './context/ThemeContext'
 import Homepage from './pages/Homepage/Homepage'
+import MovieDetails from './pages/MovieDetails/MovieDetails'
 
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
       <ThemeContextProvider>
         <Header />
         <Routes>
-         <Route path='/' element={<Homepage apiKey={apiKey} baseUrl={baseUrl}/>} />
-
+          <Route path='/' element={<Homepage apiKey={apiKey} baseUrl={baseUrl}/>} />
+          <Route path='/moviedetails/:movieid' element={<MovieDetails apiKey={apiKey} baseUrl={baseUrl}/>} />
           
         </Routes>  
       </ThemeContextProvider>
