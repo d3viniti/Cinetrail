@@ -3,7 +3,8 @@ import './Slider.css'
 import axios from 'axios'
 import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from "react-icons/md";
 import Ratings from '../Ratings/Ratings';
-import Genres from '../Genres/Genres'
+import Genres from '../Genres/Genres';
+import { Link } from 'react-router-dom';
 
 function Slider({apiKey, baseUrl}) {
     const [upcomingMovies, setUpcomingMovies] = useState([])
@@ -60,6 +61,7 @@ function Slider({apiKey, baseUrl}) {
                 <Genres movieGenres={upcomingMovies[index]?.genre_ids} baseUrl={baseUrl} apiKey={apiKey}/>
                 <p>Release Date: {upcomingMovies[index]?.release_date}</p>
                 <Ratings movieRating={movieRating[index]} />
+                <Link to={`/moviedetails/${upcomingMovies[index]?.id}`} className='see-details'>See Details</Link>
             </div>
     </div>    
   )

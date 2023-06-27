@@ -22,7 +22,7 @@ function Header({baseUrl, apiKey}) {
         })
         .catch(err=>console.log(err))
     }
-    },[])
+    },[query])
     
 
     //function to handle light/dark mode

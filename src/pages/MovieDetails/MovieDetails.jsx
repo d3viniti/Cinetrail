@@ -5,9 +5,10 @@ import {useParams} from 'react-router-dom'
 import ReactPlayer from 'react-player'
 // import Ratings from '../Ratings/Ratings';
 // import Genres from '../Genres/Genres';
+// import Ratings from '../../ components/Ratings/Ratings';
 import { ThemeContext } from '../../context/ThemeContext';
 
-function MovieDetails({baseUrl, apiKey}) {
+function MovieDetails({baseUrl, apiKey, movie}) {
     const {movieid} = useParams();
     const [videoLink, setVideoLink] = useState('')
     const [movieDetails, setMovieDetails] = useState([])
@@ -18,14 +19,15 @@ useEffect(() => {
     axios.get(`${baseUrl}/movie/${movieid}?/api_key=${apiKey}`)
     .then(res=>{
         console.log(res.data.results)
-        const youtubeLink = res.data.results.filter(item => item.site==="YouTube" && item.type==="Trailer")
-        setMovieDetails(youtubeLink[0]?.key)
+
+        setMovieDetails(res.data.results)
     })
     .catch(err=>console.log(err))
 
     axios.get(`${baseUrl}/movie/${movieid}/videos?api_key=${apiKey}&language=en-US`)
     .then(res=>{
         console.log(res.data.results)
+        const youtubeLink = res.data.results.filter(item => item.site==="YouTube" && item.type==="Trailer")
         setVideoLink(youtubeLink[0]?.key)
     })
 

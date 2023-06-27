@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import './SearchResults.css'
 import { useNavigate } from 'react-router-dom'
 import noImage from '../../assets/no-image.svg.png'
@@ -11,15 +11,15 @@ function SearchResults({movie}) {
 
     const handleNavigation = () => {
         setQuery('')
-        navigate(`/moviedetails/${movie.id}`)
+        navigate(`/moviedetails/${movie?.id}`)
     }
 
   return (
     <div className='search-results-item' onClick={handleNavigation}>
-      <img className='results-img' src={imageError ? noImage : `https://image.tmdb.org/t/p/w500{movie.backdrop_path`}
+      <img className='result-img' src={imageError ? noImage : `https://image.tmdb.org/t/p/w500{movie.backdrop_path`}
       //if there's no image, set image to no-img
       onError = {() => setImageError(true)} alt="No Image"/>
-      <p>{movie.title}</p>
+      <p>{movie?.title}</p>
     </div>
   )
 }
