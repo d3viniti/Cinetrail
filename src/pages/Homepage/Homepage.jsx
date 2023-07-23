@@ -7,9 +7,10 @@ import MovieCard from '../../ components/MovieCard/MovieCard'
 
 function Homepage({apiKey, baseUrl}) {
   //create state to set the popular movies
-  const [popularMovies, setPopularMovies] = useState([])
-  const [topRatedMovies, setTopRatedMovies] = useState([])
-  const [page, setPage] = useState(1)
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+  const [page, setPage] = useState(1);
+  const pageNumbers = [1,2,3,4,5,6,7,8,9,10];
 
 
   //create useEffect so that pop movies show up when page loads
@@ -20,7 +21,7 @@ function Homepage({apiKey, baseUrl}) {
       setPopularMovies(res.data.results)
     })
     .catch(err=>console.log(err))
-  },[])
+})
 
   //create useEffect for topRated, keeping in separate useEffect so both
   //sections don't updated when just one needs to
@@ -31,8 +32,15 @@ function Homepage({apiKey, baseUrl}) {
       setTopRatedMovies(res.data.results.slice(0,10))
     })
     .catch(err=>console.log(err))
-  },[])
+  })
+  //what does not having the [] do after the UseEffect?
   //we use .slice above because we only want to see the 10 top rated movies
+
+
+const handlePage =(page)=>{
+  setPage(page)
+  scrollTo({top: 0, left: 0, behavior: 'smooth'})
+}
 
   return (
     <div className='homepage-container'>
@@ -47,9 +55,26 @@ function Homepage({apiKey, baseUrl}) {
                 return<MovieCard radius={'16px'} cardStyle={'popular-card'} width={'200px'} height={'300px'} imageUrl={movie.poster_path} data={movie} key={movie.id}/>
               })
             }
+
+
+
           </div> 
+
+          <div className="page-numbers">
+            <p>Select Page</p>
+            {
+            pageNumbers.map((item)=>(
+            <p className={item === 'page ? "current-page" "page"' }
+            key={item}
+            onClick={()=> handlePage(item)}>
+              {item}
+            </p>
+            ))
+            }
+          </div>
+
         </div>   
-        <div className="top-rated-container">
+          <div className="top-rated-container">
             <h3>Top Rated Movies</h3>
             <div className="top-rated-cards-wrapper">
             {

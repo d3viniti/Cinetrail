@@ -77,7 +77,9 @@ function Header({baseUrl, apiKey}) {
             </div> 
 
             <div>
-                <button className='create-account-btn'>Create Account</button>
+                <Link to={`/signup`}>
+                    <button className='create-account-btn'>Create Account</button>
+                </Link>
             </div>
         </div>
     </div>
