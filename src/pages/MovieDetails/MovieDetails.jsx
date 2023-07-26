@@ -38,7 +38,7 @@ useEffect(() => {
     })
     .catch(err=>console.log(err))
 
-    axios.get(`${baseUrl}/movie/${movieid}/reviews${apiKey}&language=en-US`)
+    axios.get(`${baseUrl}/movie/${movieid}/reviews?api_key=${apiKey}`)
     .then(res=>{
         console.log(res.data.results)
         setTotalReviews(res.data.total_results)
@@ -59,14 +59,16 @@ const addToFavorites=()=>{
         movie_id: movieDetails.id
     })
     .then(res=>{
+        console.log(res.data)
         setAdded(true)
     })
     .catch(err=>console.log(err))
 }}
 
 const removeFromFavorites=()=>{
-   axios.delete(`${serverUrl}/favoriteMovies/$user._id/${movieDetails.id}`)
+   axios.delete(`${serverUrl}/favoriteMovies/${user._id}/${movieDetails.id}`)
     .then(res=>{
+        console.log(res.data)
         setAdded(false)
     })
     .catch(err=>console.log(err))
@@ -76,7 +78,7 @@ const removeFromFavorites=()=>{
 useEffect(() => {
   axios.post(`${serverUrl}favoriteMovies/search`,{ 
     user_id:user._id,
-    tmdb_id:movie.id
+    tmdb_id:movieDetails.id
   })
   .then(res=>{
     if(res.data===null){ 
