@@ -21,7 +21,7 @@ function Homepage({apiKey, baseUrl}) {
       setPopularMovies(res.data.results)
     })
     .catch(err=>console.log(err))
-})
+},[page])
 
   //create useEffect for topRated, keeping in separate useEffect so both
   //sections don't updated when just one needs to
@@ -32,7 +32,7 @@ function Homepage({apiKey, baseUrl}) {
       setTopRatedMovies(res.data.results.slice(0,10))
     })
     .catch(err=>console.log(err))
-  })
+  },[])
   //what does not having the [] do after the UseEffect?
   //we use .slice above because we only want to see the 10 top rated movies
 

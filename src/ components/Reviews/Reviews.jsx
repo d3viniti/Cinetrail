@@ -1,6 +1,7 @@
 import {useEffect, useState, useContext} from 'react'
 import './Reviews.css'
-// import avatar from '../../assets/avatar.jpeg'
+import avatar from '/avatar-1.jpeg'
+//can import directly from public folder
 import './Reviews.css'
 import { ThemeContext } from '../../context/ThemeContext'
 
@@ -17,7 +18,7 @@ function Review({review}) {
       </div>
       {
         !seeMore
-        ?<p className={darkMode ? "content": "content content-light"}>{review.content}.slice(0,300)}...<span onClick={()=>setSeeMore(true)} className='read-more'>Read More</span></p>
+        ?<p className={darkMode ? "content": "content content-light"}>{review.content}.slice(0,300)...<span onClick={()=>setSeeMore(true)} className='read-more'>Read More</span></p>
         :<p className={darkMode ? "content": "content content-light"}>{review.content}<span onClick={()=>setSeeMore(false)} className='read-less'>Read Less</span></p>
       }
     </div>

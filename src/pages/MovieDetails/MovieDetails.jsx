@@ -11,8 +11,15 @@ import { UserContext } from '../../context/UserContext';
 
 export default function MovieDetails({baseUrl, apiKey, serverUrl}) {
     const {movieid} = useParams();
+
+    const detailsInit = axios.get(`${baseUrl}/movie/${movieid}?api_key=${apiKey}`)
+    .then(res=>{
+        return(res.data)
+    })
+    .catch(err=>console.log(err))
+
     const [videoLink, setVideoLink] = useState('')
-    const [movieDetails, setMovieDetails] = useState([])
+    const [movieDetails, setMovieDetails] = useState(detailsInit)
     const [movieRating, setMovieRating] = useState(0);
     const {darkMode, setDarkMode} = useContext(ThemeContext)
     const [reviews, setReviews] = useState([])
@@ -24,7 +31,7 @@ export default function MovieDetails({baseUrl, apiKey, serverUrl}) {
 useEffect(() => {
     axios.get(`${baseUrl}/movie/${movieid}?api_key=${apiKey}`)
     .then(res=>{
-        console.log(res.data.results)
+        console.log(res.data)
         setMovieDetails(res.data)
         setMovieRating((res.data.vote_average)/2)
     })
@@ -77,7 +84,7 @@ const removeFromFavorites=()=>{
 
 useEffect(() => {
   axios.post(`${serverUrl}favoriteMovies/search`,{ 
-    user_id:user._id,
+    user_id:user?._id,
     tmdb_id:movieDetails.id
   })
   .then(res=>{
@@ -88,7 +95,12 @@ useEffect(() => {
     }
   })
   .catch(err=>console.log(err))
-}, [user, movieDetails])
+
+}, [user, movieDetails, serverUrl])
+
+// useEffect (() => {
+//     alert(movieDetails)
+// }, [movieDetails])
 
 
   return (
