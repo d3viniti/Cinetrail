@@ -22,7 +22,7 @@ function Genres(props) {
     <div style={{display:'flex'}}>
         <p>Genres: &nbsp; </p>
         
-        {component === "details" ? movieGenres?.map((item, index)=><p key={item.id}>{item.name}{index !== movieGenres.length-1 && ","} &nbsp;</p>):MovieGenres?.map((id, index)=>{
+        {component === "details" ? movieGenres?.map((item, index)=><p key={item.id}>{item.name}{index !== movieGenres.length-1 && ","} &nbsp;</p>):movieGenres?.map((id, index)=>{
             for(let i=0; i <allGenres.length; i++){
                 if(allGenres[i].id===id){return <p key={id}>
                 {allGenres[i]?.name}
