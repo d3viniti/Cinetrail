@@ -1,7 +1,7 @@
-import React,{useState,useEffect,useContext} from 'react'
+import {useState,useEffect,useContext} from 'react'
 import { useNavigate, Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import './signIn.css'
+import './SignIn.css'
 import {UserContext} from '../../context/UserContext';
 import {ThemeContext} from '../../context/ThemeContext';
 
@@ -60,3 +60,4 @@ function SignIn({serverUrl}) {
 }
 
 export default SignIn
+//I need to ensure the file paths have the correct capitalization - they won't get deployed properly on Netlify if not!
