@@ -17,7 +17,6 @@ function Homepage({apiKey, baseUrl}) {
   useEffect(()=>{
     axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}&page=${page}`)
     .then(res=>{
-      console.log(res.data.results)
       setPopularMovies(res.data.results)
     })
     .catch(err=>console.log(err))
@@ -28,7 +27,6 @@ function Homepage({apiKey, baseUrl}) {
   useEffect(()=>{
     axios.get(`${baseUrl}/movie/top_rated?api_key=${apiKey}&page=1`)
     .then(res=>{
-      console.log(res.data.results)
       setTopRatedMovies(res.data.results.slice(0,10))
     })
     .catch(err=>console.log(err))
@@ -64,7 +62,7 @@ const handlePage =(page)=>{
             <p>Select Page</p>
             {
             pageNumbers.map((item)=>(
-            <p className={item === 'page ? "current-page" "page"' }
+            <p className={item === page ? "current-page" : "page" }
             key={item}
             onClick={()=> handlePage(item)}>
               {item}
