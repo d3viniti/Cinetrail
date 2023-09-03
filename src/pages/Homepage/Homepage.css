@@ -18,10 +18,18 @@
     flex-direction:column;
     padding:0 20px;
 }
+
+.popular-title{
+    margin: 0 0 2% 15%;
+}
+
 .popular-cards-wrapper{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 .popular-cards-wrapper > *{
